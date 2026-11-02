@@ -1,0 +1,15 @@
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    environment:
+      APP_SECRET: ${APP_SECRET:?Set APP_SECRET in Coolify}
+      ADMIN_USER: ${ADMIN_USER:?Set ADMIN_USER in Coolify}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Set ADMIN_PASSWORD in Coolify}
+      HTTPS_ONLY: ${HTTPS_ONLY:-true}
+    volumes:
+      - sami-v6-data:/data
+    expose:
+      - "8000"
+volumes:
+  sami-v6-data:
